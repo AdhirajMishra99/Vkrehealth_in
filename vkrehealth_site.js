@@ -1,6 +1,3 @@
-import { Analytics } from "@vercel/analytics/next"
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const themeToggle = document.getElementById("theme-toggle");
     const navLinksContainer = document.querySelector(".nav-links");
