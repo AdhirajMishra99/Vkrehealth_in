@@ -1,0 +1,540 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Roboto:wght@400;500&display=swap');
+
+/* Base Reset & Typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #00796B; /* Teal */
+    --secondary-color: #4CAF50; /* Green for CTAs */
+    --accent-color: #FFC107; /* Amber for highlights */
+    
+    --text-color-light: #333;
+    --background-color-light: #f7f9fc; /* Lighter, softer background */
+    --card-bg-light: #ffffff;
+    --header-bg-light: var(--primary-color);
+    --header-text-light: #ffffff;
+    --footer-bg-light: #1e1e1e;
+    --footer-text-light: #e0e0e0;
+
+    --text-color-dark: #e0e0e0;
+    --background-color-dark: #121212;
+    --card-bg-dark: #1e1e1e;
+    --header-bg-dark: #1f1f1f; /* Slightly different dark for header */
+    --footer-bg-dark: #101010; /* Even darker for footer */
+
+    --font-primary: 'Poppins', 'Segoe UI', Tahoma, Verdana, sans-serif;
+    --font-secondary: 'Roboto', 'Segoe UI', Tahoma, Verdana, sans-serif;
+
+    --box-shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --box-shadow-dark: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-secondary);
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
+    line-height: 1.7;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    color: var(--primary-color);
+}
+body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark h5, body.dark h6 {
+    color: var(--secondary-color); /* Or a lighter shade like --accent-color */
+}
+
+
+/* Header */
+.site-header {
+    background-color: var(--header-bg-light);
+    color: var(--header-text-light);
+    padding: 15px 0; /* Adjusted padding */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s;
+}
+
+.logo-text {
+    font-size: 1.8rem; /* Adjusted size */
+    font-weight: 700; /* Poppins bold */
+    color: var(--header-text-light); /* Ensure logo text is light on dark header */
+}
+body.dark .logo-text {
+    color: var(--accent-color); /* Make logo pop in dark mode */
+}
+
+
+.flex { display: flex; }
+.space-between { justify-content: space-between; }
+.align-center { align-items: center; }
+
+/* Navigation */
+nav ul.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px; /* Increased gap */
+}
+
+nav ul.nav-links li a {
+    color: var(--header-text-light);
+    text-decoration: none;
+    font-size: 1rem; /* Standardized size */
+    font-weight: 500; /* Poppins medium */
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+nav ul.nav-links li a::after { /* Underline hover effect */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+nav ul.nav-links li a:hover::after,
+nav ul.nav-links li a.active::after {
+    width: 100%;
+}
+nav ul.nav-links li a:hover,
+nav ul.nav-links li a.active {
+    color: var(--accent-color); /* Highlight color */
+}
+
+
+/* Theme Toggle */
+.checkbox { display: none; }
+.checkbox-label {
+    background-color: #555; /* Darker base for toggle */
+    width: 50px;
+    height: 26px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s;
+}
+.checkbox-label .ball {
+    background-color: #fff;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    transition: transform 0.2s linear;
+}
+.checkbox:checked + .checkbox-label .ball { transform: translateX(24px); }
+.checkbox-label .toggle-icon {
+    font-size: 0.8rem; /* Smaller icons inside toggle */
+    color: var(--accent-color);
+}
+body.dark .checkbox-label { background-color: #777; }
+
+/* Main Content Sections */
+main section {
+    padding: 60px 20px;
+    background-color: var(--card-bg-light); /* Default section background */
+    margin-bottom: 20px; /* Space between sections */
+    border-radius: 8px;
+}
+main section:nth-child(odd) { /* Alternate section backgrounds slightly */
+     background-color: var(--background-color-light);
+}
+
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(rgba(0, 121, 107, 0.85), rgba(0, 77, 64, 0.92)), url('your-hero-image.jpg') no-repeat center center/cover;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0; /* Full width hero often looks better without top radius */
+    margin-bottom: 0; /* Connect with next section */
+}
+.hero-section .logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+}
+.hero-section .motto {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #fff; /* Ensure motto is white */
+}
+.hero-section .tagline {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    color: #e0e0e0;
+    font-weight: 400;
+}
+
+/* General CTA Button Styles */
+.cta-button {
+    background-color: var(--secondary-color);
+    color: white !important; /* Ensure text is white */
+    padding: 14px 30px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: background-color 0.3s, transform 0.2s;
+    display: inline-block;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.cta-button:hover {
+    background-color: #388E3C; /* Darker shade of secondary */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+.cta-button-small { /* For CTAs within service items etc. */
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    background-color: var(--accent-color);
+    color: var(--text-color-light) !important; /* Dark text on accent */
+}
+.cta-button-small:hover {
+    background-color: #FFB300; /* Darker accent */
+}
+
+
+/* Info Section (About Us) */
+.info-section {
+    text-align: center;
+    background-color: var(--background-color-light); /* Matches body bg for seamless feel */
+}
+.info-section h2 {
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+}
+.info-section p {
+    max-width: 800px;
+    margin: 0 auto 15px auto;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+
+/* Services Preview Section */
+.services-preview-section {
+    background-color: var(--card-bg-light);
+}
+.services-preview-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+}
+.feature-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+.feature-card {
+    background-color: var(--card-bg-light); /* Redundant if section bg is the same, but good for consistency */
+    padding: 30px 25px;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow-light);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+.feature-card i {
+    font-size: 2.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+.feature-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+.feature-card p {
+    font-size: 0.95rem;
+}
+
+/* Detailed Services Section */
+.detailed-services-section {
+    background-color: var(--background-color-light);
+}
+.detailed-services-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+}
+.service-item {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    background-color: var(--card-bg-light);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow-light);
+    margin-bottom: 25px;
+}
+.service-item:last-child {
+    margin-bottom: 0;
+}
+.service-icon i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    width: 60px; /* Give icon a fixed width for alignment */
+    text-align: center;
+}
+.service-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+.service-content p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+/* Video Embed */
+.video-section {
+    background-color: var(--card-bg-light);
+}
+.video-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+}
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow-light);
+}
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    background-color: var(--background-color-light);
+}
+.testimonials-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+}
+.testimonial-slider {
+    display: grid; /* Simple grid for now, can be enhanced with JS slider */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+.testimonial-card {
+    background-color: var(--card-bg-light);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow-light);
+    border-left: 5px solid var(--secondary-color);
+}
+.testimonial-card p {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: #555; /* Slightly muted text for quote */
+}
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.testimonial-author .avatar { /* Style if you add images */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.testimonial-author h4 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--footer-bg-light);
+    color: var(--footer-text-light);
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    transition: background-color 0.3s, color 0.3s;
+}
+footer a {
+    color: var(--accent-color);
+    margin: 0 8px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+footer a:hover { color: #ffffff; }
+.social-links { margin: 15px 0; }
+.social-links i { font-size: 1.5rem; } /* Larger social icons */
+footer p { margin-bottom: 8px; }
+
+
+/* Dark Mode Specifics */
+body.dark {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+}
+body.dark .site-header { background-color: var(--header-bg-dark); }
+body.dark nav ul.nav-links li a { color: var(--text-color-dark); } /* Adjust nav link color */
+body.dark nav ul.nav-links li a:hover,
+body.dark nav ul.nav-links li a.active {
+    color: var(--accent-color);
+}
+body.dark main section {
+    background-color: var(--card-bg-dark);
+    border: 1px solid #2a2a2a; /* Subtle border for separation in dark mode */
+}
+body.dark main section:nth-child(odd) {
+     background-color: var(--background-color-dark); /* Darker alternating sections */
+     border: none; /* Remove border if it's same as body background */
+}
+body.dark .hero-section {
+    background: linear-gradient(rgba(0, 77, 64, 0.9), rgba(0, 37, 26, 0.95)), url('your-hero-image.jpg') no-repeat center center/cover; /* Darker gradient */
+}
+body.dark .info-section {
+    background-color: var(--background-color-dark);
+}
+body.dark .feature-card, 
+body.dark .service-item,
+body.dark .testimonial-card {
+    box-shadow: var(--box-shadow-dark);
+    background-color: var(--card-bg-dark); /* Ensure card bg is distinct if section bg is darker */
+}
+body.dark .feature-card i { color: var(--accent-color); }
+body.dark .testimonial-card p { color: #bbb; } /* Lighter quote text for dark mode */
+body.dark .video-wrapper { box-shadow: var(--box-shadow-dark); }
+body.dark footer {
+    background-color: var(--footer-bg-dark);
+    color: var(--footer-text-light); /* Ensure footer text is light */
+}
+body.dark footer a { color: var(--accent-color); }
+body.dark footer a:hover { color: #ffffff; }
+body.dark .cta-button-small {
+    color: var(--text-color-dark) !important; /* Adjust if needed on accent */
+    background-color: var(--accent-color);
+}
+body.dark .cta-button-small:hover {
+    background-color: #FFB300; /* Darker accent */
+}
+
+/* Responsive Design */
+.menu-toggle { /* Style for the JS-generated button */
+    display: none; /* Hidden by default, shown in media query */
+    background: none;
+    border: none;
+    color: var(--header-text-light); /* Match header text color */
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 1002;
+}
+body.dark .menu-toggle {
+    color: var(--accent-color); /* Make toggle pop in dark mode header */
+}
+
+
+@media screen and (max-width: 768px) {
+    .flex {
+        /* flex-direction: column; Removed to keep header items in a row */
+        /* align-items: flex-start; Removed */
+    }
+    .site-header .container { /* Ensure logo and toggle are space-between */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav { /* Allow nav to be separate for positioning */
+        position: relative;
+    }
+    .menu-toggle { display: block; }
+
+    nav ul.nav-links {
+        flex-direction: column;
+        gap: 0; /* Remove gap, use padding on li */
+        position: absolute;
+        top: calc(100% + 15px); /* Position below header */
+        right: 0; /* Align to the right */
+        width: 250px; /* Fixed width for dropdown */
+        background: var(--header-bg-light); /* Match header bg */
+        padding: 10px 0;
+        border-radius: 0 0 8px 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        display: none; /* Controlled by .visible class */
+        z-index: 1001;
+    }
+    nav ul.nav-links.visible { display: flex; }
+    nav ul.nav-links li a {
+        display: block;
+        padding: 12px 20px; /* Make links easily tappable */
+        width: 100%;
+    }
+    nav ul.nav-links li a::after { display: none; } /* Remove underline effect on mobile */
+    nav ul.nav-links li a:hover {
+        background-color: rgba(255,255,255,0.1); /* Subtle hover for mobile */
+    }
+    body.dark nav ul.nav-links { background: var(--header-bg-dark); }
+    body.dark nav ul.nav-links li a:hover { background-color: rgba(0,0,0,0.2); }
+
+
+    .hero-section .motto { font-size: 2.2rem; }
+    .hero-section .tagline { font-size: 1.1rem; }
+
+    .service-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    .service-icon i { margin-bottom: 15px; }
+}
+
+/* Focus States for Accessibility */
+a:focus-visible, button:focus-visible, input:focus-visible, .checkbox-label:focus-within {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--background-color-light), 0 0 0 4px var(--accent-color); /* More visible halo */
+}
+body.dark a:focus-visible, body.dark button:focus-visible, body.dark input:focus-visible, body.dark .checkbox-label:focus-within {
+    box-shadow: 0 0 0 2px var(--background-color-dark), 0 0 0 4px var(--accent-color);
+}
